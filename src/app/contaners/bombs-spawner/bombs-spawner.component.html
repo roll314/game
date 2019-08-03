@@ -1,0 +1,8 @@
+bomb: {{bomb | json}}
+<app-bomb
+  *ngFor="let bomb of bombs"
+  [bomb]="bomb"
+  (explode)="removeBomb(bomb)"
+  (capture)="captureBomb(bomb)"
+  (release)="releaseBomb(bomb)">
+</app-bomb>

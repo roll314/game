@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  position: absolute;
+}
+
+.timeout-indicator {
+  fill: #ffa726;
+}
+
+.timeout-text {
+  text-anchor: middle;
+  stroke: black;
+  stroke-width: 1px;
+}

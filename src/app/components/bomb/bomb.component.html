@@ -1,0 +1,24 @@
+<svg
+  xmlns:svg="http://www.w3.org/2000/svg"
+  [style.width.px]="radius * 2"
+  [style.height.px]="radius * 2">
+  <svg:circle
+    [attr.cx]="radius"
+    [attr.cy]="radius"
+    [attr.r]="radius"
+    [attr.fill]="bomb.color">
+  </svg:circle>
+
+  <svg:g [attr.transform]="'translate(' + (radius * 2 - timeoutIndicatorRadius) + ', ' + timeoutIndicatorRadius + ')'">
+    <svg:circle
+      class="timeout-indicator"
+      [attr.r]="timeoutIndicatorRadius">
+    </svg:circle>
+    <text
+      class="timeout-text"
+      dy=".3em"
+      [style.fontSize.px]="timeoutIndicatorFontSize">
+      {{restTimeout | ms2sec}}
+    </text>
+  </svg:g>
+</svg>

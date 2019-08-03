@@ -1,14 +1,5 @@
+<app-bombs-spawner></app-bombs-spawner>
 
-<div
-  class="bomb"
-  [style.top.px]="bomb.y"
-  [style.left.px]="bomb.x"
-  [style.backgroundColor]="bomb.color"
-  (panstart)="onPanStart($event, bomb)" (panmove)="onPan($event, bomb)"
-  *ngFor="let bomb of bombs">
-  {{bomb.restTimeout}}
-</div>
-
-
+<div style="width: 200px; height: 200px; background: red">123</div>
 
 <router-outlet></router-outlet>
