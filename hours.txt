@@ -1,0 +1,13 @@
+mouse dragging research         2h
+hammerjs
+  vs standard mouse events
+  vs angular/cdk                1h
+base drag\drop implementation   1h
+store                           1h
+bomb & bombs spawner            1h
+bins & bins spawner             1h
+testing                         1h
+bug fixing                      1h
+chic & glamor                 0.5h
+----------------------------------
+total                         9.5h
