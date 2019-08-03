@@ -1,6 +1,7 @@
 :host {
   display: block;
   position: absolute;
+  z-index: 10;
 }
 
 .timeout-indicator {
@@ -11,4 +12,5 @@
   text-anchor: middle;
   stroke: black;
   stroke-width: 1px;
+  user-select: none;
 }

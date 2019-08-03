@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BombsSpawnerComponent } from './bombs-spawner.component';
+import {BombsSpawnerComponent} from './bombs-spawner.component';
 
 describe('BombsSpawnerComponent', () => {
   let component: BombsSpawnerComponent;
@@ -8,9 +8,9 @@ describe('BombsSpawnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BombsSpawnerComponent ]
+      declarations: [BombsSpawnerComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

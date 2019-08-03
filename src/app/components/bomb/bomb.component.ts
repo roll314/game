@@ -1,7 +1,8 @@
-import {Component, ElementRef, EventEmitter, HostBinding, Input, OnInit, Output} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {mergeMap, takeUntil} from 'rxjs/operators';
 import {MS_IN_SEC} from '../../pipes/ms.pipe';
+import {Colors} from '../../settings';
 
 
 const USE_HAMMER_JS = false;
@@ -26,7 +27,12 @@ export class Bomb {
     private _color: Colors,
     // tslint:disable-next-line:variable-name
     private _timeout: number
-  ) {}
+  ) {
+  }
+}
+
+export function getBombRadius(): number {
+  return Math.min(window.innerHeight, window.innerWidth) / SIZE_FACTOR;
 }
 
 @Component({
@@ -54,7 +60,7 @@ export class BombComponent implements OnInit {
   @Output()
   release: EventEmitter<void> = new EventEmitter();
 
-  restTimeout: number;
+  timeToExplode: number;
 
   radius: number;
   timeoutIndicatorRadius: number;
@@ -62,7 +68,8 @@ export class BombComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.sizeToFactor();
@@ -77,12 +84,12 @@ export class BombComponent implements OnInit {
   }
 
   private initInterval() {
-    this.restTimeout = this.bomb.timeout;
+    this.timeToExplode = this.bomb.timeout;
 
     const interval = setInterval(() => {
-      this.restTimeout = this.restTimeout - MS_IN_SEC;
+      this.timeToExplode -= MS_IN_SEC;
 
-      if (this.restTimeout <= 0) {
+      if (this.timeToExplode <= 0) {
         clearInterval(interval);
         this.explode.emit();
       }
@@ -90,7 +97,7 @@ export class BombComponent implements OnInit {
   }
 
   private initNative() {
-    const nativeElement = this.elementRef.nativeElement;
+    const nativeElement: HTMLScriptElement = this.elementRef.nativeElement;
 
     const move$ = fromEvent(document, 'mousemove');
     const down$ = fromEvent(nativeElement, 'mousedown');
@@ -100,8 +107,9 @@ export class BombComponent implements OnInit {
     let startY: number;
 
     down$.subscribe((event: MouseEvent) => {
-      startX = event.offsetX;
-      startY = event.offsetY;
+      startX = event.clientX;
+      startY = event.clientY;
+
       this.capture.emit();
 
       up$.subscribe(() => this.release.emit());
@@ -112,8 +120,14 @@ export class BombComponent implements OnInit {
         mergeMap(() => move$.pipe(takeUntil(up$)))
       )
       .subscribe((event: MouseEvent) => {
-        this.bomb.x = event.clientX - startX;
-        this.bomb.y = event.clientY - startY;
+        const x = startX - event.clientX;
+        const y = startY - event.clientY;
+
+        startX = event.clientX;
+        startY = event.clientY;
+
+        this.bomb.x = nativeElement.offsetLeft - x;
+        this.bomb.y = nativeElement.offsetTop - y;
       });
   }
 
@@ -142,7 +156,7 @@ export class BombComponent implements OnInit {
   }
 
   private sizeToFactor() {
-    this.radius = Math.min(window.innerHeight, window.innerWidth) / SIZE_FACTOR;
+    this.radius = getBombRadius();
     this.timeoutIndicatorRadius = this.radius / TIMOUT_INDICATOR_SIZE_FACTOR;
     this.timeoutIndicatorFontSize = this.timeoutIndicatorRadius / TIMOUT_INDICATOR_FONT_SIZE_FACTOR;
   }
