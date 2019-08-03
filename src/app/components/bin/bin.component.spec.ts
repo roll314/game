@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { BinComponent } from './bin.component';
+import {BinComponent} from './bin.component';
 
 describe('BinComponent', () => {
   let component: BinComponent;
@@ -8,9 +8,9 @@ describe('BinComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BinComponent ]
+      declarations: [BinComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

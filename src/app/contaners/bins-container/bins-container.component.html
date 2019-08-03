@@ -1,0 +1,7 @@
+<app-bin
+  *ngFor="let bin of bins"
+  [bin]="bin"
+  [isActive]="bin === activeBin && activeBin.color === capturedBomb.color"
+  (mouseIn)="mouseOnBin(bin)"
+  (mouseOut)="mouseOutOfBin(bin)">
+</app-bin>

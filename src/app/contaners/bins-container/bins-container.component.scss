@@ -1,0 +1,9 @@
+:host {
+  margin: 50px 50px 10px 50px;
+  display: flex;
+  justify-content: center;
+
+  app-bin + app-bin {
+    margin-left: 100px;
+  }
+}
