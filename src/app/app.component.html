@@ -1,5 +1,22 @@
-<app-bombs-spawner></app-bombs-spawner>
-
-<app-bin color="red"></app-bin>
-
-<router-outlet></router-outlet>
+<div *ngIf="gameStatus === GameStatus.Finished" class="game-end-splasher">
+  <div class="game-over-container">GAME OVER</div>
+  <div class="game-over-score-container">
+    Your score is <span class="game-over-score">{{score}}</span>
+  </div>
+</div>
+<div class="container">
+  <div
+    class="score-info-container"
+    [style.fontSize.px]="infoFontSize"
+    [class.good-score]="score >= 0"
+    [class.bad-score]="score < 0">
+    Score: {{score}}
+  </div>
+  <app-bombs-spawner></app-bombs-spawner>
+  <app-bins-container></app-bins-container>
+  <div
+    class="color-change-info-container"
+    [style.fontSize.px]="infoFontSize">
+    Change in: {{timeToColorChange | ms2sec}}s
+  </div>
+</div>
