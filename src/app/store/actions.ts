@@ -11,6 +11,6 @@ export const degreaseScore = createAction('[Score] degrease score');
 
 export const setTimeToColorChange = createAction('[Timers] set time to color change', props<{ time: number }>());
 
-export const setActiveBin = createAction('[Bin] set active bin', props<{ bin: Bin}>());
+export const setActiveBin = createAction('[Bin] set active bin', props<{ bin: Bin }>());
 
 export const finishGame = createAction('[Game] finish game');
