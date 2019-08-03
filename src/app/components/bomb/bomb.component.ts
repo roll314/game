@@ -10,11 +10,6 @@ const SIZE_FACTOR = 20;
 const TIMOUT_INDICATOR_SIZE_FACTOR = 3;
 const TIMOUT_INDICATOR_FONT_SIZE_FACTOR = 1;
 
-// todo move to settings file
-const COLORS = <const> ['red', 'blue', 'green', 'gray', 'pink'];
-
-type Colors = typeof COLORS[number];
-
 export class Bomb {
   get color(): Colors {
     return this._color;
@@ -108,9 +103,9 @@ export class BombComponent implements OnInit {
       startX = event.offsetX;
       startY = event.offsetY;
       this.capture.emit();
-    });
 
-    up$.subscribe(() => this.release.emit());
+      up$.subscribe(() => this.release.emit());
+    });
 
     down$
       .pipe(
