@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {Bomb, getBombRadius} from '../../components/bomb/bomb.component';
 import {GameFacade} from '../../store/facade';
-import {ComponentWithSubscription} from '../../utils/ComponentWithSubscription';
+import {ComponentWithSubscription} from '../../core/ComponentWithSubscription';
 import {Bin} from '../../components/bin/bin.component';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {

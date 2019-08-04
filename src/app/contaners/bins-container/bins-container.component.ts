@@ -1,6 +1,6 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Bomb} from '../../components/bomb/bomb.component';
-import {ComponentWithSubscription} from '../../utils/ComponentWithSubscription';
+import {ComponentWithSubscription} from '../../core/ComponentWithSubscription';
 import {GameFacade} from '../../store/facade';
 import {Bin} from '../../components/bin/bin.component';
 import {BINS_COUNT, COLORS, TIME_TO_BINS_COLORS_MS} from '../../settings';
@@ -21,14 +21,11 @@ export class BinsContainerComponent extends ComponentWithSubscription implements
   private activeBin: Bin;
 
   constructor(
-    private elementRef: ElementRef,
     private gameFacade: GameFacade
   ) {
     super();
 
-    for (let i = 0; i < BINS_COUNT; i++) {
-      this.bins.push(new Bin(null));
-    }
+    this.fillBinsEmpty();
   }
 
   ngOnInit() {
@@ -80,6 +77,12 @@ export class BinsContainerComponent extends ComponentWithSubscription implements
       const index = Math.floor(Math.random() * restOfColors.length);
       this.bins[i].color = restOfColors[index];
       restOfColors.splice(index, 1);
+    }
+  }
+
+  private fillBinsEmpty() {
+    for (let i = 0; i < BINS_COUNT; i++) {
+      this.bins.push(new Bin(null));
     }
   }
 }

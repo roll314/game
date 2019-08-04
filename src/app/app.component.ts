@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ComponentWithSubscription} from './utils/ComponentWithSubscription';
+import {ComponentWithSubscription} from './core/ComponentWithSubscription';
 import {GameFacade} from './store/facade';
 import {GameStatus} from './store/reducer';
 

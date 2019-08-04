@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BombComponent} from './components/bomb/bomb.component';
 import {MsPipe} from './pipes/ms.pipe';
@@ -24,7 +23,6 @@ import {BinComponent} from './components/bin/bin.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature('game', gameReducer),
   ],
